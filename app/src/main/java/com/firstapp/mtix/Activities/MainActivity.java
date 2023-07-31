@@ -1,8 +1,10 @@
-package com.firstapp.mtix;
+package com.firstapp.mtix.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.firstapp.mtix.R;
 
 public class MainActivity extends AppCompatActivity {
 
