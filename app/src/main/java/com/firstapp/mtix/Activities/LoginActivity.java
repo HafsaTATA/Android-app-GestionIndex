@@ -4,6 +4,7 @@ package com.firstapp.mtix.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,10 +25,28 @@ public class LoginActivity extends AppCompatActivity {
     private Button continueButton ;
 
 
+    private boolean isLoggedIn() {
+        SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
+        // Replace "user_token" with the key used to store the user token in SharedPreferences
+        // If the user token exists in SharedPreferences, it means the user is logged in.
+        return preferences.contains("user_token");
+    }
 
+    private void redirectToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //before anything test if he already logged in:
+        if (isLoggedIn()) {
+            // User is logged in, redirect to the main activity
+            redirectToMainActivity();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
 
         GB = new Gestion_Base_Donnees(this);
@@ -76,6 +95,9 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
+
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,10 +112,14 @@ public class LoginActivity extends AppCompatActivity {
                     mdpLayout.setError(null);
                     matriculeLayout.setError(null);
 
-                    //insert here the constructor of second activity:
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    // Store the user token in SharedPreferences to indicate the user is logged in
+                    SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("user_token", "YOUR_USER_TOKEN");
+                    editor.apply();
+
+
+                    redirectToMainActivity();
                 } else {
                     continueButton.setEnabled(false);
                     mdpLayout.setError(" ");
