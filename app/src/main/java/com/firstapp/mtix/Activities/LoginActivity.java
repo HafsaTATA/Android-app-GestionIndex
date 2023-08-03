@@ -50,6 +50,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         GB = new Gestion_Base_Donnees(this);
+        // Appeler la méthode insertDonneesTest() ici
+        GB.insertDonneesTest();
+
         matriculeInput =  findViewById(R.id.matriculeInput);
         mdpInput =  findViewById(R.id.mdpInput);
         continueButton = (Button) findViewById(R.id.continueButton);

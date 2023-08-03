@@ -1,5 +1,6 @@
 package com.firstapp.mtix;
 
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,8 +17,7 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     public static final String nom_table_releveur = "Releveur";
     public static final String COL_1_releveur = "code_matricule";
     public static final String COL_2_releveur = "mot_de_passe";
-    public static final String COL_3_releveur = "nom";
-    public static final String COL_4_releveur = "prenom";
+    public static final String COL_3_releveur = "nom_prenom";
 
     public static final String nom_table_secteur = "Secteur";
     public static final String COL_1_secteur = "code_secteur";
@@ -45,8 +45,7 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
     public static final String nom_table_client = "Client";
     public static final String COL_1_client = "id_client";
-    public static final String COL_2_client = "nom";
-    public static final String COL_3_client = "prenom";
+    public static final String COL_2_client = "nom_prenom";
     public static final String COL_4_client = "numero_etage_fk";
     public static final String COL_5_client = "id_batiment_fk";
 
@@ -61,8 +60,10 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
     public Gestion_Base_Donnees(@Nullable Context context) {
         super(context, nom_database, null, 1);
-        SQLiteDatabase db = this.getWritableDatabase();
-        insertDonneesTest(); // Insérer des données de test lors de la création de la base de données
+        //   SQLiteDatabase db = this.getWritableDatabase();
+        // Insérer des données de test lors de la création de la base de données
+
+
     }
 
 
@@ -70,10 +71,9 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 // Création de la table "Releveur"
         String req1 = "CREATE TABLE " + nom_table_releveur + " (" +
-                COL_1_releveur + " Text primary key, " +
-                COL_2_releveur + " Text, " +
-                COL_3_releveur + " Text, " +
-                COL_4_releveur + " Text)";
+                COL_1_releveur + " TEXT PRIMARY KEY, " +
+                COL_2_releveur + " TEXT, " +
+                COL_3_releveur + " TEXT)";
         db.execSQL(req1);
 
         // Création de la table "Secteur" avec la clé étrangère
@@ -113,11 +113,10 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
         // Création de la table "Client" avec les clés étrangères
         String req6 = "CREATE TABLE " + nom_table_client + " (" +
-                COL_1_client + " integer primary key, " +
-                COL_2_client + " Text, " +
-                COL_3_client + " Text, " +
-                COL_4_client + " integer, " +
-                COL_5_client + " integer REFERENCES " + nom_table_batiment + "(" + COL_1_batiment + "))";
+                COL_1_client + " INTEGER PRIMARY KEY, " +
+                COL_2_client + " TEXT, " +
+                COL_4_client + " INTEGER, " +
+                COL_5_client + " INTEGER REFERENCES " + nom_table_batiment + "(" + COL_1_batiment + "))";
         db.execSQL(req6);
 
         // Création de la table "Releve" avec les clés étrangères
@@ -130,6 +129,8 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
                 COL_6_releve + " integer REFERENCES " + nom_table_compteur + "(" + COL_1_compteur + "), " +
                 COL_7_releve + " integer REFERENCES " + nom_table_releveur + "(" + COL_1_releveur + "))";
         db.execSQL(req7);
+
+
     }
 
 
@@ -149,7 +150,7 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     }
 
     //fonction INSERT
-    private void insertDonneesTest() {
+    public void insertDonneesTest() {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Vérifier si les données de test existent déjà dans la table "Releveur"
@@ -169,8 +170,8 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         ContentValues valeurs = new ContentValues();
         valeurs.put(COL_1_releveur, "33334444");
         valeurs.put(COL_2_releveur, "11122");
-        valeurs.put(COL_3_releveur, "fatih");
-        valeurs.put(COL_4_releveur, "ahmed");
+        valeurs.put(COL_3_releveur, "fatih ahmed"); // Fusion de "nom" et "prenom"
+
 
         long result = db.insert(nom_table_releveur, null, valeurs);
         if (result == -1) {
@@ -185,12 +186,18 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
             do {
                 @SuppressLint("Range") String codeMatricule = testCursor.getString(testCursor.getColumnIndex(COL_1_releveur));
                 @SuppressLint("Range") String motDePasse = testCursor.getString(testCursor.getColumnIndex(COL_2_releveur));
+                @SuppressLint("Range") String nomPrenom = testCursor.getString(testCursor.getColumnIndex(COL_3_releveur)); // Nouvelle colonne
                 Log.d("Insertion", "Données de test récupérées : Code Matricule = " + codeMatricule
-                        + ", Mot de passe = " + motDePasse);
+                        + ", Mot de passe = " + motDePasse + ", Nom et Prénom = " + nomPrenom);
             } while (testCursor.moveToNext());
         }
         testCursor.close();
+
+        db.close(); // Fermer la base de données après utilisation
     }
+
+
+
 
 
     public boolean verifierUtilisateur(String codeMatricule, String motDePasse) {
@@ -201,6 +208,7 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         String[] colonnes = {COL_1_releveur};
         String selection = COL_1_releveur + " = ? AND " + COL_2_releveur + " = ?";
         String[] selectionArgs = {codeMatricule, motDePasse};
+        // String[] colonnes = {"COUNT(*)"};
         Cursor cursor = db.query(nom_table_releveur, colonnes, selection, selectionArgs, null, null, null);
         boolean utilisateurExiste = (cursor != null && cursor.getCount() > 0);
         if (cursor != null) {
