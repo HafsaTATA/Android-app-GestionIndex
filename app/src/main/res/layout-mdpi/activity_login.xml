@@ -6,41 +6,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.LoginActivity"
-    android:background="@drawable/background1"
-<<<<<<< HEAD
-    tools:ignore="MissingDefaultResource">
-=======
     tools:ignore="MissingDefaultResource"
+
     >
->>>>>>> 2b780b140dd079a440d8005217bd84af00f65755
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background1"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="130dp"
         android:alpha="0.5"
+        android:letterSpacing="-0.03"
         android:text="Bienvenue sur Métix!"
         android:textColor="@color/BlueDark"
-        android:textSize="17dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:letterSpacing="-0.03"/>
+        tools:ignore="TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="40dp"
 
         android:text="S'indentifier"
         android:textColor="@color/white"
-        android:textSize="45dp"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,9 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="45dp"
         android:hint="Code matricule"
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"
@@ -81,7 +87,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/matriculeInput"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:drawableStart="@drawable/custom_matricule"
             android:drawablePadding="10dp"
             android:maxLength="9" />
@@ -92,9 +98,9 @@
         style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="45dp"
         android:hint="Mot de passe"
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"
@@ -119,7 +125,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/mdpInput"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:drawableStart="@drawable/custom_mdp"
             android:drawablePadding="10dp"
             android:inputType="textPassword"
@@ -130,9 +136,9 @@
         android:id="@+id/continueButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="45dp"
         android:backgroundTint="@color/BluePrimary"
         android:drawableEnd="@drawable/fleche"
         android:paddingEnd="10dp"
