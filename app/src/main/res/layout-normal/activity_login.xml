@@ -60,7 +60,7 @@
         app:boxStrokeColor="@color/GreenPrimary"
         app:boxStrokeErrorColor="@color/RedAlerts"
         app:counterEnabled="true"
-        app:counterMaxLength="10"
+        app:counterMaxLength="9"
         app:counterOverflowTextColor="@color/RedAlerts"
         app:endIconMode="clear_text"
         app:errorIconTint="@color/RedAlerts"
@@ -79,7 +79,7 @@
             android:layout_height="55dp"
             android:drawableStart="@drawable/custom_matricule"
             android:drawablePadding="10dp"
-            android:maxLength="10" />
+            android:maxLength="9" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
