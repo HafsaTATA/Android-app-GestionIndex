@@ -5,7 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.Splash"
+<<<<<<< HEAD
     tools:ignore="MissingDefaultResource">
+=======
+    tools:ignore="MissingDefaultResource"
+    >
+>>>>>>> 2b780b140dd079a440d8005217bd84af00f65755
 
     <ImageView
         android:id="@+id/imageView"

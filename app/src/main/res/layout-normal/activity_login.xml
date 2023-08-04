@@ -7,7 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LoginActivity"
     android:background="@drawable/background1"
+<<<<<<< HEAD
     tools:ignore="MissingDefaultResource">
+=======
+    tools:ignore="MissingDefaultResource"
+    >
+>>>>>>> 2b780b140dd079a440d8005217bd84af00f65755
 
     <TextView
         android:id="@+id/textView2"
