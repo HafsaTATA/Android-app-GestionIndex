@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-<<<<<<< HEAD
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/mainLayout"
-    >
-=======
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/mainLayout"
     tools:ignore="MissingDefaultResource">
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

@@ -6,4 +6,483 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Releve">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/GreenPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="10dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="13dp"
+            android:letterSpacing="0.3"
+            android:text="Détails de la Relève:"
+            android:textColor="@color/white"
+            android:textSize="21dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:background="@color/GreyLight"
+        android:layout_marginTop="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:id="@+id/firstlayout"
+            android:layout_width="match_parent"
+            android:layout_height="680dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="17dp">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp" />
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:text="N° de tournée  :"
+                android:layout_marginStart="45dp"
+                android:letterSpacing="0.1"
+                android:textSize="21dp"/>
+
+            <TextView
+                android:id="@+id/titreTourne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView7"
+                android:letterSpacing="0.199999999"
+                android:text="Relève d'eau"
+                android:textColor="@color/GreenDark"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/Tournee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toEndOf="@+id/text"
+                android:letterSpacing="0.1"
+                android:text="33"
+                android:textSize="21dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView7"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="45dp"
+                android:letterSpacing="0.1"
+                android:text="Date : "
+                android:textColor="@color/GreyPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/Dateeau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView7"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="39dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/textView6"
+                android:background="@drawable/input_shape"
+                android:hint="Exemple: 12/03/3023"
+                android:inputType="datetime"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView6"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:letterSpacing="0.1"
+                android:text="Valeur: "
+                android:textColor="@color/GreyPrimary"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/Eau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Dateeau"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/textView6"
+                android:background="@drawable/input_shape"
+                android:hint="Exemple: 650.000 m3"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:paddingStart="10dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView6"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="105dp"
+                android:layout_marginEnd="20dp"
+                android:letterSpacing="0.1"
+                android:text="Anomalie: "
+                android:textColor="@color/GreyPrimary"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/Anomalie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Eau"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/textView9"
+                android:background="@drawable/input_shape"
+                android:minHeight="48dp"
+                android:paddingStart="5dp" />
+
+            <Button
+                android:id="@+id/pictureEau"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView9"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/input_shape"
+                android:drawableBottom="@drawable/baseline_camera_alt_24"
+                android:text="Capturer le Compteur" />
+
+            <TextView
+                android:id="@+id/prev"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pictureEau"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="30dp"
+                android:letterSpacing="0.199999999"
+                android:text="Relève Précédente "
+                android:textColor="@color/GreenDark"
+                android:textSize="23dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/prev"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/GreySecondary"
+                app:cardCornerRadius="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Date : "
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:id="@+id/prevDateeau"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="15dp"
+                    android:text="12/02/2023"
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="55dp"
+                    android:text="Valeur : "
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:id="@+id/prevEau"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="55dp"
+                    android:letterSpacing="0.1"
+                    android:text="3411.32"
+                    android:textSize="21dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="235dp"
+                    android:layout_marginTop="55dp"
+                    android:letterSpacing="0.1"
+                    android:text="m3"
+                    android:textSize="21dp" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/suivant"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_below="@+id/card"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="23dp"
+                android:backgroundTint="@color/BluePrimaryAlpha"
+
+                />
+
+            <RelativeLayout
+                android:layout_below="@id/suivant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="Relève d'Electricité "
+                    android:textColor="@color/GreenDark"
+                    android:textSize="23dp"
+                    android:letterSpacing="0.199999999"
+                    />
+
+                <TextView
+                    android:id="@+id/textview11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView10"
+                    android:layout_alignStart="@+id/textView10"
+                    android:layout_marginStart="20dp"
+                    android:text="Date :"
+                    android:layout_marginTop="17dp"
+                    android:textSize="20dp"
+                    android:letterSpacing="0.1"
+                    android:textColor="@color/GreyPrimary"
+                    />
+
+                <EditText
+                    android:id="@+id/DateElec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView10"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_toEndOf="@+id/textview11"
+                    android:background="@drawable/input_shape"
+                    android:hint="Exemple: 12/03/3023"
+                    android:paddingStart="15dp"
+                    android:inputType="date"
+                    android:textSize="18dp"
+                    android:minHeight="48dp"
+                    />
+
+                <TextView
+                    android:id="@+id/TextView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview11"
+                    android:layout_alignStart="@+id/textView10"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:letterSpacing="0.1"
+                    android:text="Valeur: "
+                    android:textColor="@color/GreyPrimary"
+                    android:textSize="20dp"
+                    />
+
+                <EditText
+                    android:id="@+id/Elec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/DateElec"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_toEndOf="@+id/textview11"
+                    android:background="@drawable/input_shape"
+                    android:hint="Exemple: 650.000 m3"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingStart="15dp"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textview11"
+                    android:layout_alignStart="@+id/textView10"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="99dp"
+                    android:layout_marginEnd="20dp"
+                    android:letterSpacing="0.1"
+                    android:text="Anomalie: "
+                    android:textColor="@color/GreyPrimary"
+                    android:textSize="20dp" />
+
+                <Spinner
+                    android:id="@+id/AnomalieElecElec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/Elec"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/textView13"
+                    android:background="@drawable/input_shape"
+                    android:minHeight="48dp"
+                    android:paddingStart="5dp"
+                    />
+
+                <Button
+                    android:id="@+id/pictureElec"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView13"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/input_shape"
+                    android:drawableBottom="@drawable/baseline_camera_alt_24"
+                    android:text="Capturer le Compteur" />
+
+                <TextView
+                    android:id="@+id/prev2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pictureElec"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp"
+                    android:letterSpacing="0.199999999"
+                    android:text="Relève Précédente "
+                    android:textColor="@color/GreenDark"
+                    android:textSize="23dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/prev2"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/GreySecondary"
+                    app:cardCornerRadius="5dp"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Date : "
+                        android:textSize="21dp" />
+
+                    <TextView
+                        android:id="@+id/prevDateElec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="120dp"
+                        android:layout_marginTop="15dp"
+                        android:text="12/02/2023"
+                        android:textSize="21dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="55dp"
+                        android:text="Valeur : "
+                        android:textSize="21dp" />
+
+                    <TextView
+                        android:id="@+id/prevElec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="120dp"
+                        android:layout_marginTop="55dp"
+                        android:letterSpacing="0.1"
+                        android:text="3411.32"
+                        android:textSize="21dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="235dp"
+                        android:layout_marginTop="55dp"
+                        android:letterSpacing="0.1"
+                        android:text="m3"
+                        android:textSize="21dp" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/precedent"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_below="@id/card2"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="0dp"
+                    android:backgroundTint="@color/GreyLight"
+                    android:text="Précédent"
+                    android:gravity="left"
+                    android:drawableLeft="@drawable/flech2left"
+                    android:textColor="@color/GreyPrimary"
+                    android:textSize="20dp"
+                    android:layout_marginTop="35dp" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
