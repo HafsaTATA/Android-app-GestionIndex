@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Métix</string>
+    <string name="clients_restants">Clients restants?</string>
+    <string name="id_du_client">Entrer ID du client</string>
+</resources>
