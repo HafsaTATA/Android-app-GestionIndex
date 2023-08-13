@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".Activities.Splash">
-=======
     tools:context=".Activities.Splash"
-    tools:ignore="MissingDefaultResource">
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
+    tools:ignore="MissingDefaultResource"
+    >
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -28,17 +26,14 @@
         android:gravity="center_horizontal"
         android:text="MétiX"
         android:textColor="@color/white"
-<<<<<<< HEAD
-        android:textSize="75dp"
-=======
-        android:textSize="70dip"
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
+        android:textSize="60dip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.763"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
+        tools:ignore="TextSizeCheck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0.8"
@@ -46,20 +41,13 @@
         android:gravity="center_horizontal"
         android:text="Appli de Gestion des Index"
         android:textColor="@color/white"
-<<<<<<< HEAD
-        android:textSize="19dp"
-=======
-        android:textSize="17dip"
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.8" />
-<<<<<<< HEAD
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
+        app:layout_constraintVertical_bias="0.8"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
