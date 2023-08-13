@@ -1,11 +1,5 @@
 <resources>
-<<<<<<< HEAD
     <string name="app_name">Métix</string>
     <string name="clients_restants">Clients restants?</string>
     <string name="id_du_client">Entrer ID du client</string>
-=======
-    <string name="app_name">MétiX</string>
-    <string name="id_du_client">Entrer ID du client</string>
-    <string name="clients_restants">Clients restants?</string>
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
 </resources>

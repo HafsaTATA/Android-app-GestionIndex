@@ -1,15 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-<<<<<<< HEAD
     <style name="Base.Theme.Mtix" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/GreySecondary</item>
         <item name="android:fontFamily">@font/outfit_medium</item>
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-=======
-    <style name="Base.Theme.MétiX" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <item name="colorPrimary">@color/GreenPrimary</item>
->>>>>>> 277966d6cfa68b47b05238d650ef6f45ff15a77a
     </style>
 </resources>
