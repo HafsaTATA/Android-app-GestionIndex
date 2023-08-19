@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    String codeMatricule;
     ImageView logout;
 
     TextView fullName;
@@ -92,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Retrieve the saved codeMatricule from SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
+        String codeMatricule = preferences.getString("codeMatricule", null);
+
         setContentView(R.layout.activity_main);
         logout = findViewById(R.id.logout);
         clientRestant=findViewById(R.id.compteur_restants);
@@ -99,13 +104,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtenir le code matricule de l'utilisateur à partir de l'activité de connexion
         Intent intent = getIntent();
-        String codeMatricule = intent.getStringExtra("codeMatricule");
+        // Check if the intent has the "user_id" extra
+        if (intent.hasExtra("codeMatricule")) {
+            // Retrieve the user id from the intent
+            codeMatricule = intent.getStringExtra("codeMatricule");
+
+            // Now you have the user id, you can use it as needed
+            // For example, you can log it or display it in a TextView
+            Log.d("wellek khdm", "codeMatricule value after starting MainActivity: " + codeMatricule);
+        } else {
+            // Handle the case where the "user_id" extra is missing
+            Log.e("wellek khdm", "No MATRICULE found in the intent");
+        }
+
 
         // Utiliser la classe Gestion_Base_Donnees pour obtenir le nom complet de l'utilisateur
         Gestion_Base_Donnees gestionBaseDonnees = new Gestion_Base_Donnees(this);
         String nomComplet = gestionBaseDonnees.getFullNameFromCodeMatricule(codeMatricule);
-        nomComplet="TATA Hafsa ";
         Log.d("fullname","name: "+nomComplet);
+
         // Mettre à jour le TextView avec le nom complet de l'utilisateur
         fullName.setText(nomComplet);
 

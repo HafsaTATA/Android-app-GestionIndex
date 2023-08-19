@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -119,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("user_token", "YOUR_USER_TOKEN");
+                    editor.putString("codeMatricule", codeMatricule);
                     editor.apply();
 
 // Pass the codeMatricule as an extra to MainActivity
@@ -127,9 +129,6 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
 
-
-
-                    redirectToMainActivity();
                 } else {
                     continueButton.setEnabled(false);
                     mdpLayout.setError(" ");

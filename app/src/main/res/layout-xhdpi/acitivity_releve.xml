@@ -179,8 +179,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView9"
                 android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/input_shape"
+                app:cornerRadius="8dp"
                 android:drawableBottom="@drawable/baseline_camera_alt_24"
                 android:text="Capturer le Compteur" />
 
@@ -385,7 +386,7 @@
                     android:layout_below="@+id/textView13"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/input_shape"
+                    app:cornerRadius="8dp"
                     android:drawableBottom="@drawable/baseline_camera_alt_24"
                     android:text="Capturer le Compteur" />
 
