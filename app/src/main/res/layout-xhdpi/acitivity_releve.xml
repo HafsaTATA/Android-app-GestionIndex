@@ -140,7 +140,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@+id/textView6"
                 android:background="@drawable/input_shape"
-                android:hint="Exemple: 650.000 m3"
+                android:hint="Exemple: 650.000 "
                 android:inputType="number"
                 android:minHeight="48dp"
                 android:paddingStart="10dp"
@@ -345,7 +345,7 @@
                     android:layout_marginTop="19dp"
                     android:layout_toEndOf="@+id/textview11"
                     android:background="@drawable/input_shape"
-                    android:hint="Exemple: 650.000 m3"
+                    android:hint="Exemple: 650.000 "
                     android:inputType="number"
                     android:minHeight="48dp"
                     android:paddingStart="15dp"
@@ -457,7 +457,7 @@
                         android:layout_marginStart="235dp"
                         android:layout_marginTop="55dp"
                         android:letterSpacing="0.1"
-                        android:text="m3"
+                        android:text="kWh"
                         android:textSize="21dp" />
 
 
