@@ -17,6 +17,7 @@ import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -33,6 +34,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.firstapp.mtix.Gestion_Base_Donnees;
 import com.firstapp.mtix.R;
 
 public class Releve extends AppCompatActivity {
@@ -63,6 +65,8 @@ public class Releve extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_releve);
+
+        Gestion_Base_Donnees databaseHelper = new Gestion_Base_Donnees(this);
         spinnerOptions1 = findViewById(R.id.Anomalie);
         spinnerOptions2 = findViewById(R.id.AnomalieElecElec);
         dateEau = findViewById(R.id.Dateeau);
@@ -72,21 +76,13 @@ public class Releve extends AppCompatActivity {
         precedent = findViewById(R.id.precedent);
 
         //pass data:
-        // Get the intent that started this activity
         Intent intent = getIntent();
-
+         // Retrieve the saved codeMatricule from SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
+        String codeMatricule = preferences.getString("codeMatricule", null);
         // Check if the intent has the "user_id" extra
-        if (intent.hasExtra("user_id")) {
-            // Retrieve the user id from the intent
-            String userId = intent.getStringExtra("user_id");
+        String userId = intent.getStringExtra("user_id");
 
-            // Now you have the user id, you can use it as needed
-            // For example, you can log it or display it in a TextView
-            Log.d("wekwek1", "User ID: " + userId);
-        } else {
-            // Handle the case where the "user_id" extra is missing
-            Log.e("wekwek2", "No user ID found in the intent");
-        }
 
 
             // SPINNER1 CODE:
@@ -121,6 +117,51 @@ public class Releve extends AppCompatActivity {
         precedent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+                    String date;
+                    double valeur;
+                    String anomalie;
+                    int idCompteurSelectionne = 0;
+                    int typeDeGerence;
+
+                    // Vérifier quel onglet est actif (eau ou électricité)
+                    if (dateEau.getVisibility() == View.VISIBLE) {
+                        date = dateEau.getText().toString();
+                        valeur = Double.parseDouble(((EditText) findViewById(R.id.Eau)).getText().toString());
+                        anomalie = spinnerOptions1.getSelectedItem().toString();
+                        // Obtenez idCompteurSelectionne pour l'eau
+
+                        typeDeGerence = databaseHelper.getTypeDeGerencePourCompteur(idCompteurSelectionne);
+
+                        if (typeDeGerence == 1) {
+                            // Insérez les données dans la table Releve
+                            databaseHelper.insererDonneesReleve(date, valeur, "33", idCompteurSelectionne, codeMatricule, anomalie);
+                            Toast.makeText(Releve.this, "Données eau insérées", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Releve.this, "Ce compteur n'est pas de type de gerence eau (1)", Toast.LENGTH_SHORT).show();
+                        }
+                    } else if (dateElec.getVisibility() == View.VISIBLE) {
+                        date = dateElec.getText().toString();
+                        valeur = Double.parseDouble(((EditText) findViewById(R.id.Elec)).getText().toString());
+                        anomalie = spinnerOptions2.getSelectedItem().toString();
+                        // Obtenez idCompteurSelectionne pour l'électricité
+
+                        typeDeGerence = databaseHelper.getTypeDeGerencePourCompteur(idCompteurSelectionne);
+
+                        if (typeDeGerence == 2) {
+                            // Insérez les données dans la table Releve
+                            databaseHelper.insererDonneesReleve(date, valeur, "33", idCompteurSelectionne, codeMatricule, anomalie);
+                            Toast.makeText(Releve.this, "Données électricité insérées", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(Releve.this, "Ce compteur n'est pas de type de gerence électricité (2)", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.d("Insertion", "Erreur lors des opérations de base de données : " + e.getMessage());
+                }
+
+                //go back:
                 onBackPressed();
             }
         });

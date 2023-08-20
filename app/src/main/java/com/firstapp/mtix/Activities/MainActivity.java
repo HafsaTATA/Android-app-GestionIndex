@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // Retrieve the saved codeMatricule from SharedPreferences
         SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
-        String codeMatricule = preferences.getString("codeMatricule", null);
+        codeMatricule = preferences.getString("codeMatricule", null);
 
         setContentView(R.layout.activity_main);
         logout = findViewById(R.id.logout);
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         if (intent.hasExtra("codeMatricule")) {
             // Retrieve the user id from the intent
             codeMatricule = intent.getStringExtra("codeMatricule");
+
 
             // Now you have the user id, you can use it as needed
             // For example, you can log it or display it in a TextView

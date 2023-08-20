@@ -124,9 +124,12 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
 
 // Pass the codeMatricule as an extra to MainActivity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("codeMatricule", codeMatricule);
-                    startActivity(intent);
+                    Intent intent1 = new Intent(LoginActivity.this, Releve.class);
+                    intent1.putExtra("codeMatricule", codeMatricule);
+
+                    Intent intent2 = new Intent(LoginActivity.this, MainActivity.class);
+                    intent2.putExtra("codeMatricule", codeMatricule);
+                    startActivity(intent2);
                     finish();
 
                 } else {

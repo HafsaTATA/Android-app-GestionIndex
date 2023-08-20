@@ -1,5 +1,6 @@
 package com.firstapp.mtix;
 
+
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
 
 import com.firstapp.mtix.model.Client;
 
@@ -281,6 +283,72 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
         return clients;
     }
+
+    @SuppressLint("Range")
+    public int getIdCompteurPourTypeGerence(int typeDeGerence) {
+        SQLiteDatabase db = getReadableDatabase();
+        int idCompteur = -1; // Valeur par défaut en cas de non correspondance
+
+        String[] columns = {COL_1_compteur}; // Colonne "id_compteur"
+        String selection = COL_2_compteur + " = ?";
+        String[] selectionArgs = {String.valueOf(typeDeGerence)};
+
+        Cursor cursor = db.query(nom_table_compteur, columns, selection, selectionArgs, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            idCompteur = cursor.getInt(cursor.getColumnIndex(COL_1_compteur));
+        }
+
+        cursor.close();
+        db.close();
+        return idCompteur;
+    }
+
+    @SuppressLint("Range")
+    public int getTypeDeGerencePourCompteur(int idCompteur) {
+        SQLiteDatabase db = getReadableDatabase();
+        int typeDeGerence = -1; // Valeur par défaut en cas de non correspondance
+
+        String[] columns = {COL_2_compteur}; // Colonne "type_de_gerence"
+        String selection = COL_1_compteur + " = ?";
+        String[] selectionArgs = {String.valueOf(idCompteur)};
+
+        Cursor cursor = db.query(nom_table_compteur, columns, selection, selectionArgs, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            typeDeGerence = cursor.getInt(cursor.getColumnIndex(COL_2_compteur));
+        }
+
+        cursor.close();
+        db.close();
+        return typeDeGerence;
+    }
+
+
+
+    public void insererDonneesReleve(String date, double valeur, String s, int idCompteur, String codeMatricule, String anomalie) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COL_2_releve, valeur);
+        values.put(COL_3_releve, date);
+        values.put(COL_5_releve, s);
+        values.put(COL_6_releve, idCompteur);
+        values.put(COL_7_releve, codeMatricule);
+        values.put(COL_8_releve, anomalie);
+
+        long result = db.insert(nom_table_releve, null, values);
+
+        if (result == -1) {
+            Log.d("Insertion", "Erreur lors de l'insertion des données dans la table Releve.");
+        } else {
+            Log.d("Insertion", "Données insérées avec succès dans la table Releve.");
+        }
+
+        db.close();
+    }
+
+
 
 
 
