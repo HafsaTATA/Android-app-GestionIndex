@@ -68,7 +68,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     public Gestion_Base_Donnees(@Nullable Context context) {
         super(context, nom_database, null, 1);
         //   SQLiteDatabase db = this.getWritableDatabase();
-        // Insérer des données de test lors de la création de la base de données
 
 
     }
@@ -76,28 +75,24 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-// Création de la table "Releveur"
         String req1 = "CREATE TABLE " + nom_table_releveur + " (" +
                 COL_1_releveur + " TEXT PRIMARY KEY, " +
                 COL_2_releveur + " TEXT, " +
                 COL_3_releveur + " TEXT)";
         db.execSQL(req1);
 
-        // Création de la table "Secteur" avec la clé étrangère
         String req2 = "CREATE TABLE " + nom_table_secteur + " (" +
                 COL_1_secteur + " integer primary key, " +
                 COL_2_secteur + " Text, " +
                 COL_3_secteur + " integer REFERENCES " + nom_table_releveur + "(" + COL_1_releveur + "))";
         db.execSQL(req2);
 
-        // Création de la table "Batiment" avec la clé étrangère
         String req3 = "CREATE TABLE " + nom_table_batiment + " (" +
                 COL_1_batiment + " integer primary key, " +
                 COL_2_batiment + " Text, " +
                 COL_3_batiment + " integer REFERENCES " + nom_table_secteur + "(" + COL_1_secteur + "))";
         db.execSQL(req3);
 
-        // Création de la table "Propriete" avec la clé primaire composée
         String req4 = "CREATE TABLE " + nom_table_propriete + " (" +
                 COL_1_propriete_etage + " integer, " +
                 COL_2_propriete_batiment_fk + " integer, " +
@@ -109,7 +104,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         db.execSQL(req4);
 
 
-        // Création de la table "Compteur" avec la clé étrangère
         String req5 = "CREATE TABLE " + nom_table_compteur + " (" +
                 COL_1_compteur + " integer primary key, " +
                 COL_2_compteur + " Text, " +
@@ -118,7 +112,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
                 COL_5_compteur + " integer REFERENCES " + nom_table_batiment + "(" + COL_1_batiment + "))";
         db.execSQL(req5);
 
-        // Création de la table "Client" avec les clés étrangères
         String req6 = "CREATE TABLE " + nom_table_client + " (" +
                 COL_1_client + " INTEGER PRIMARY KEY, " +
                 COL_2_client + " TEXT, " +
@@ -126,7 +119,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
                 COL_5_client + " INTEGER REFERENCES " + nom_table_batiment + "(" + COL_1_batiment + "))";
         db.execSQL(req6);
 
-        // Création de la table "Releve" avec les clés étrangères
         String req7 = "CREATE TABLE " + nom_table_releve + " (" +
                 COL_1_releve + " Integer primary key, " +
                 COL_2_releve + "Integer, " +
@@ -144,7 +136,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        // Supprimer les tables existantes si elles existent déjà
         db.execSQL("DROP TABLE IF EXISTS " + nom_table_releveur);
         db.execSQL("DROP TABLE IF EXISTS " + nom_table_secteur);
         db.execSQL("DROP TABLE IF EXISTS " + nom_table_batiment);
@@ -153,15 +144,12 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + nom_table_client);
         db.execSQL("DROP TABLE IF EXISTS " + nom_table_releve);
 
-        // Recréer les tables avec la nouvelle structure
         onCreate(db);
     }
 
-    //fonction INSERT
     public void insertDonneesTest() {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // Vérifier si les données de test existent déjà dans la table "Releveur"
         String query = "SELECT COUNT(*) FROM " + nom_table_releveur;
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
@@ -174,7 +162,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
             return;
         }
 
-        // Insertion des données de test dans la table "Releveur"
         ContentValues valeurs = new ContentValues();
         valeurs.put(COL_1_releveur, "33334444");
         valeurs.put(COL_2_releveur, "11122");
@@ -188,7 +175,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
             Log.d("Insertion", "Données de test insérées avec succès dans la table Releveur.");
         }
 
-        // Vérifier les données insérées en les récupérant à nouveau et en les affichant dans les logs
         Cursor testCursor = db.query(nom_table_releveur, null, null, null, null, null, null);
         if (testCursor.moveToFirst()) {
             do {
@@ -201,11 +187,8 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         }
         testCursor.close();
 
-        db.close(); // Fermer la base de données après utilisation
+        db.close();
     }
-
-
-
 
 
     public boolean verifierUtilisateur(String codeMatricule, String motDePasse) {
@@ -216,7 +199,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         String[] colonnes = {COL_1_releveur};
         String selection = COL_1_releveur + " = ? AND " + COL_2_releveur + " = ?";
         String[] selectionArgs = {codeMatricule, motDePasse};
-        // String[] colonnes = {"COUNT(*)"};
         Cursor cursor = db.query(nom_table_releveur, colonnes, selection, selectionArgs, null, null, null);
         boolean utilisateurExiste = (cursor != null && cursor.getCount() > 0);
         if (cursor != null) {
@@ -243,13 +225,13 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
         String fullName = null;
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] columns = {COL_3_releveur}; // Utilisez la colonne "nom_prenom" au lieu de "FULL_NAME"
+        String[] columns = {COL_3_releveur};
         String selection = COL_1_releveur + " = ?";
         String[] selectionArgs = {codeMatricule};
         Cursor cursor = db.query(nom_table_releveur, columns, selection, selectionArgs, null, null, null);
 
         if (cursor.moveToFirst()) {
-            fullName = cursor.getString(cursor.getColumnIndex(COL_3_releveur)); // Utilisez la constante COL_3_releveur au lieu de "FULL_NAME"
+            fullName = cursor.getString(cursor.getColumnIndex(COL_3_releveur));
         }
 
         cursor.close();
@@ -261,10 +243,10 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     public List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
 
-        // Supposons que vous ayez déjà une base de données SQLite ouverte
+
         SQLiteDatabase db = getReadableDatabase();
 
-        // Supposons que votre table Client contient les colonnes id_client et nom_prenom
+
         String[] columns = {"id_client", "nom_prenom"};
 
         Cursor cursor = db.query("Client", columns, null, null, null, null, null);
@@ -287,9 +269,9 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public int getIdCompteurPourTypeGerence(int typeDeGerence) {
         SQLiteDatabase db = getReadableDatabase();
-        int idCompteur = -1; // Valeur par défaut en cas de non correspondance
+        int idCompteur = -1;
 
-        String[] columns = {COL_1_compteur}; // Colonne "id_compteur"
+        String[] columns = {COL_1_compteur};
         String selection = COL_2_compteur + " = ?";
         String[] selectionArgs = {String.valueOf(typeDeGerence)};
 
@@ -307,9 +289,9 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public int getTypeDeGerencePourCompteur(int idCompteur) {
         SQLiteDatabase db = getReadableDatabase();
-        int typeDeGerence = -1; // Valeur par défaut en cas de non correspondance
+        int typeDeGerence = -1;
 
-        String[] columns = {COL_2_compteur}; // Colonne "type_de_gerence"
+        String[] columns = {COL_2_compteur};
         String selection = COL_1_compteur + " = ?";
         String[] selectionArgs = {String.valueOf(idCompteur)};
 
@@ -347,11 +329,6 @@ public class Gestion_Base_Donnees  extends SQLiteOpenHelper {
 
         db.close();
     }
-
-
-
-
-
 
 
 }

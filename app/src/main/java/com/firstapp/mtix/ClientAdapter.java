@@ -54,7 +54,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(holder.itemView.getContext(), Releve.class);
-                intent.putExtra("user_id", String.valueOf(client.getId()));//to pass the user id from the mainactivity to releve activity
+                intent.putExtra("user_id", String.valueOf(client.getId()));
                 holder.itemView.getContext().startActivity(intent);
             }
         });
@@ -66,7 +66,6 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ClientView
         return clientList.size();
     }
 
-    // Méthode pour mettre à jour la liste de clients
     public void setClientList(List<Client> clients) {
         clientList.clear();
         clientList.addAll(clients);

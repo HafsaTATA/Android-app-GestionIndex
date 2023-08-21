@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                // Perform logout: Clear the session data when the user logs out
+
                 SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void searchClient(String clientId) {
-
-        // Filtrer la liste des clients en fonction de l'ID client saisi
         List<Client> filteredClients = new ArrayList<>();
         for (Client client : clientList) {
             if (String.valueOf(client.getId()).equals(clientId)) {
@@ -81,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // Mettre à jour la liste des clients de l'adaptateur avec la liste filtrée
         adapter.setClientList(filteredClients);
     }
 
@@ -93,49 +90,40 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Retrieve the saved codeMatricule from SharedPreferences
+
         SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
         codeMatricule = preferences.getString("codeMatricule", null);
 
         setContentView(R.layout.activity_main);
         logout = findViewById(R.id.logout);
         clientRestant=findViewById(R.id.compteur_restants);
-        fullName = findViewById(R.id.fullName); // Lier le EditText pour afficher le nom complet
+        fullName = findViewById(R.id.fullName);
 
-        // Obtenir le code matricule de l'utilisateur à partir de l'activité de connexion
+
         Intent intent = getIntent();
-        // Check if the intent has the "user_id" extra
+
         if (intent.hasExtra("codeMatricule")) {
-            // Retrieve the user id from the intent
+
             codeMatricule = intent.getStringExtra("codeMatricule");
 
-
-            // Now you have the user id, you can use it as needed
-            // For example, you can log it or display it in a TextView
             Log.d("wellek khdm", "codeMatricule value after starting MainActivity: " + codeMatricule);
         } else {
-            // Handle the case where the "user_id" extra is missing
             Log.e("wellek khdm", "No MATRICULE found in the intent");
         }
 
-
-        // Utiliser la classe Gestion_Base_Donnees pour obtenir le nom complet de l'utilisateur
         Gestion_Base_Donnees gestionBaseDonnees = new Gestion_Base_Donnees(this);
         String nomComplet = gestionBaseDonnees.getFullNameFromCodeMatricule(codeMatricule);
         Log.d("fullname","name: "+nomComplet);
 
-        // Mettre à jour le TextView avec le nom complet de l'utilisateur
         fullName.setText(nomComplet);
 
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Appel de la méthode pour récupérer la liste des clients
         gestionBaseDonnees = new Gestion_Base_Donnees(this);
         clientList = gestionBaseDonnees.getAllClients();
 
-        // Création de l'adaptateur pour le RecyclerView
         adapter = new ClientAdapter(clientList);
 
         recyclerView.setAdapter(adapter);
@@ -147,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Ajoutez ici la configuration du gestionnaire de texte pour search_bar
         EditText searchBar = findViewById(R.id.search_bar);
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override

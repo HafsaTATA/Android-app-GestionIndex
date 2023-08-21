@@ -75,30 +75,24 @@ public class Releve extends AppCompatActivity {
         picElec = findViewById(R.id.pictureElec);
         precedent = findViewById(R.id.precedent);
 
-        //pass data:
         Intent intent = getIntent();
-         // Retrieve the saved codeMatricule from SharedPreferences
         SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
         String codeMatricule = preferences.getString("codeMatricule", null);
-        // Check if the intent has the "user_id" extra
         String userId = intent.getStringExtra("user_id");
 
 
 
             // SPINNER1 CODE:
         String[] options = {"null", "Compteur inaccessible", "Vitre cassée", "Compteur douteux", "Compteur bloqué"};
-        // Create an ArrayAdapter using the options array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-        // Specify the layout to use when the list of options appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinnerOptions1.setAdapter(adapter);
-        //SPINNER2 CODE:
+            //SPINNER2 CODE:
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOptions2.setAdapter(adapter2);
 
-        //DATE CODE:
+            //DATE CODE:
         dateEau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +107,7 @@ public class Releve extends AppCompatActivity {
             }
         });
 
-        //precdent button code:
+            //precdent button code:
         precedent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,36 +118,25 @@ public class Releve extends AppCompatActivity {
                     int idCompteurSelectionne = 0;
                     int typeDeGerence;
 
-                    // Vérifier quel onglet est actif (eau ou électricité)
                     if (dateEau.getVisibility() == View.VISIBLE) {
                         date = dateEau.getText().toString();
                         valeur = Double.parseDouble(((EditText) findViewById(R.id.Eau)).getText().toString());
                         anomalie = spinnerOptions1.getSelectedItem().toString();
-                        // Obtenez idCompteurSelectionne pour l'eau
 
                         typeDeGerence = databaseHelper.getTypeDeGerencePourCompteur(idCompteurSelectionne);
 
                         if (typeDeGerence == 1) {
-                            // Insérez les données dans la table Releve
                             databaseHelper.insererDonneesReleve(date, valeur, "33", idCompteurSelectionne, codeMatricule, anomalie);
-                            Toast.makeText(Releve.this, "Données eau insérées", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(Releve.this, "Ce compteur n'est pas de type de gerence eau (1)", Toast.LENGTH_SHORT).show();
                         }
                     } else if (dateElec.getVisibility() == View.VISIBLE) {
                         date = dateElec.getText().toString();
                         valeur = Double.parseDouble(((EditText) findViewById(R.id.Elec)).getText().toString());
                         anomalie = spinnerOptions2.getSelectedItem().toString();
-                        // Obtenez idCompteurSelectionne pour l'électricité
 
                         typeDeGerence = databaseHelper.getTypeDeGerencePourCompteur(idCompteurSelectionne);
 
                         if (typeDeGerence == 2) {
-                            // Insérez les données dans la table Releve
                             databaseHelper.insererDonneesReleve(date, valeur, "33", idCompteurSelectionne, codeMatricule, anomalie);
-                            Toast.makeText(Releve.this, "Données électricité insérées", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(Releve.this, "Ce compteur n'est pas de type de gerence électricité (2)", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (Exception e) {
@@ -165,7 +148,8 @@ public class Releve extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        //meter pictures manager:
+
+
         picEau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,9 +201,9 @@ public class Releve extends AppCompatActivity {
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
         image_uri=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
 
-        Intent camintent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        camintent.putExtra(MediaStore.EXTRA_OUTPUT,image_uri);
-        startActivityForResult(camintent,CAPTURE_CODE);
+        Intent camIntent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        camIntent.putExtra(MediaStore.EXTRA_OUTPUT,image_uri);
+        startActivityForResult(camIntent,CAPTURE_CODE);
     }
 
     @Override

@@ -28,8 +28,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isLoggedIn() {
         SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
-        // Replace "user_token" with the key used to store the user token in SharedPreferences
-        // If the user token exists in SharedPreferences, it means the user is logged in.
         return preferences.contains("user_token");
     }
 
@@ -41,9 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //before anything test if he already logged in:
+
         if (isLoggedIn()) {
-            // User is logged in, redirect to the main activity
             redirectToMainActivity();
             return;
         }
@@ -51,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         GB = new Gestion_Base_Donnees(this);
-        // Appeler la méthode insertDonneesTest() ici
-
 
         matriculeInput =  findViewById(R.id.matriculeInput);
         mdpInput =  findViewById(R.id.mdpInput);
@@ -71,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 continueButton.setEnabled(true);
                 mdpLayout.setError(null);
                 matriculeLayout.setError(null);
-                //for when the user tries again,the button must be enabled and errors gone
+
             }
 
             @Override
@@ -91,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                 continueButton.setEnabled(true);
                 mdpLayout.setError(null);
                 matriculeLayout.setError(null);
-                //for when the user tries again,the button must be enabled and errors gone
             }
 
             @Override
@@ -109,21 +103,18 @@ public class LoginActivity extends AppCompatActivity {
                 String motDePasse = mdpInput.getText().toString();
 
                 if (GB.verifierUtilisateur(codeMatricule, motDePasse)) {
-                    // L'utilisateur existe dans la table Releveur, passer à l'interface suivante
-                    // Placez ici le code pour passer à l'interface suivante
                     Toast.makeText(LoginActivity.this, " Identification réussie !", Toast.LENGTH_SHORT).show();
                     continueButton.setEnabled(true);
                     mdpLayout.setError(null);
                     matriculeLayout.setError(null);
 
-                    // Store the user token in SharedPreferences to indicate the user is logged in
                     SharedPreferences preferences = getSharedPreferences("your_session_pref_name", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("user_token", "YOUR_USER_TOKEN");
                     editor.putString("codeMatricule", codeMatricule);
                     editor.apply();
 
-// Pass the codeMatricule as an extra to MainActivity
+
                     Intent intent1 = new Intent(LoginActivity.this, Releve.class);
                     intent1.putExtra("codeMatricule", codeMatricule);
 
